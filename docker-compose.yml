@@ -1,0 +1,16 @@
+version: '3.6'
+services:
+  iris:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+    - "9091:51773"
+    - "9092:52773"
+    - "7200:7200"
+    volumes:
+     - type: bind
+       source: ./src
+       target: /srccls
+        

@@ -1,0 +1,10 @@
+ Docker CMD
+ docker-compose build
+ docker system prune --volumes           
+ docker rmi iris_smwrap_iris
+ docker-compose up -d
+ docker-compose  stop
+ docker-compose exec iris iris session iris
+
+docker save -o C:\DockerProject\iris_smwrap\iris-community_2019.4.0.383.0.tar intersystemsdc/iris-community 
+docker load -i C:\DockerProject\iris_smwrap\iris-community_2019.4.0.383.0.tar   
