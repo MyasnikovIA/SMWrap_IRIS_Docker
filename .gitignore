@@ -3,3 +3,6 @@
 
 /.vscode
 /iris-community_2019.4.0.383.0.tar
+/DB/stream
+/DB/IRIS.DAT
+/DB/iris.lck

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="IRIS" version="26">
+<Routine name="ZSTU" type="MAC" languagemode="0"><![CDATA[
+ZSTU
+  job RunSmwrap
+  job InitDB
+  q
+  
+RunSmwrap  
+  do RUN^%ZMRPMD
+  q
+
+InitDB
+  If ('##class(%File).Exists("/opt/irisapp/DB/IRIS.DAT")) do
+  .  do ##class(App.Installer).setup()
+  .  do EnableDeepSee^%SYS.cspServer("/csp/irisapp/") 
+  q
+
+]]></Routine>
+</Export>

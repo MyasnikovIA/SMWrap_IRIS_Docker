@@ -5,12 +5,15 @@ services:
       context: .
       dockerfile: Dockerfile
     restart: always
-    ports:
-    - "9091:51773"
-    - "9092:52773"
-    - "7200:7200"
+    ports: 
+      - "9091:51773"
+      - "9092:52773"      
+      - "9093:53773"      
+      - "7200:7200"      
     volumes:
-     - type: bind
-       source: ./src
-       target: /srccls
-        
+      - ~/iris.key:/usr/irissys/mgr/iris.key
+#     - ./:/irisdev/app
+      - ./DB:/opt/irisapp/DB
+      - ./src:/usr/irissys/mgr/src
+      
+

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25" zv="Cache for Windows (x86-64) 2017.2 (Build 651U)" ts="2019-05-29 21:47:56">
+<Class name="User.test">
+<Description>
+http://dev.progrepublic.ru:57773/csp/yagodauserdev1web/User.test.cls</Description>
+<Super>%CSP.Page</Super>
+<TimeChanged>65162,77653.555732</TimeChanged>
+<TimeCreated>65162,58093.116719</TimeCreated>
+
+<Method name="OnPreHTTP">
+<ClassMethod>1</ClassMethod>
+<ReturnType>%Library.Boolean</ReturnType>
+<Implementation><![CDATA[
+    	
+  if %request.Get("read","")'=""{	
+     s FileName=%request.Get("read","")
+     if ##class(%File).Exists(FileName)=1   {
+        do %response.SetHeader("Content-Disposition","attachment;filename="""_FileName_"""")
+        Do %response.SetHeader("Content-Type","application/octet-stream")   
+        q 1
+     }
+  }else{
+     ; Do %response.SetHeader("Content-Type","text/plain")   
+     ; Do %response.SetHeader("Content-Type","application/javascript")   
+  }
+   q 1
+]]></Implementation>
+</Method>
+
+<Method name="OnPage">
+<ClassMethod>1</ClassMethod>
+<ReturnType>%Status</ReturnType>
+<Implementation><![CDATA[
+	
+  if %request.Get("read","")'=""{	
+      S rawFileName=%request.Get("read","")
+      if ##class(%File).Exists(rawFileName)=1   {
+         S stream=##class(%FileBinaryStream).%New()
+         S stream.Filename=rawFileName 
+         While 'stream.AtEnd  {
+	        s html=stream.Read(32000)
+            w html
+         }
+         d stream.%Close()
+         s stream=""
+      }
+	  q 1
+   } 
+   s Dir=%request.Get("dir","")
+   zw Dir
+   w !
+   // s Dir="c:\InterSystems\"
+   // s:Dir="" Dir="C:\InterSystems\IRIS\mgr\"
+   s:Dir="" Dir="C:\"
+   s filter=""
+   s rs = ##class(%Library.ResultSet).%New("%Library.File:FileSet")
+   s sc = rs.Execute(Dir,filter,"Name")
+   k DirTmp,FileTmp
+     if $e(Dir,$l(Dir),$l(Dir))="\"{
+	    s Dir=$e(Dir,1,$l(Dir)-1) 
+     }
+     s Dir=$e(Dir,1,$l(Dir)-1-$l($p($e(Dir,1,$l(Dir)-1),"\",$l($e(Dir,1,$l(Dir)-1),"\"))))
+	 w !,"<br>Dir: <a href='?dir="_Dir_"\'>...</a>"
+    
+   while rs.Next()
+   {
+     s name = rs.Get("Name")
+     s dir=$tr(name,":","$")
+     if (rs.Get("Type") = "D")
+     {
+	    w !,"<br>Dir: <a href='?dir="_name_"'>"_name_"</a>"
+	 }else{
+	    w !,"<br> <a href='?read="_name_"'>"_name_"</a>"
+	 }
+  }
+	Quit $$$OK
+]]></Implementation>
+</Method>
+</Class>
+</Export>

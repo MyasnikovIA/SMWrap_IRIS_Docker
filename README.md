@@ -4,7 +4,6 @@
 
 <h3>Сборка контейнера:</h3>
 1) Запустить build_project.bat<br>
-2) Инсталлировать классы в терминале d ##class(%%ZUser.Installer).installSmwrap()<br>
 
 <h4>Студия</h4>
 SMWrap/MStudio.exe
