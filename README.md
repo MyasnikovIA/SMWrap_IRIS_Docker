@@ -1,9 +1,7 @@
 # SMWrap_IRIS_Docker
 Запуск SMWrap MAKOVA  в Intersystems IRIS Docker
-
-
 <h3>Сборка контейнера:</h3>
-1) Запустить build_project.bat<br>
+1) Запустить builnd.bat<br>
 
 <h4>Студия</h4>
 SMWrap/MStudio.exe
