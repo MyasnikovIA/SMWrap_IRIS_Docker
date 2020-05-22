@@ -13,6 +13,8 @@ RunSmwrap
 InitDB
   If ('##class(%File).Exists("/opt/irisapp/DB/IRIS.DAT")) do
   .  do ##class(App.Installer).setup()
+  .  zn "IRISAPP" 
+  .  zpm "install sslclient" 
   .  do EnableDeepSee^%SYS.cspServer("/csp/irisapp/") 
   q
 
