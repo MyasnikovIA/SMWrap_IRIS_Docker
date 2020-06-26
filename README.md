@@ -12,4 +12,6 @@ SMWrap/SMWrap.xml
 <h4>Запуск сервера SMWrap</h4>
 d RUN^%ZMRPMD
 
-<iframe src="html/index.html"></iframe>
+<iframe src="https://github.com/MyasnikovIA/SMWrap_IRIS_Docker/blob/master/html/index.html?raw=true"></iframe>
+
+ <img src="https://github.com/MyasnikovIA/SMWrap_IRIS_Docker/blob/master/html/index.html?raw=true"/>
