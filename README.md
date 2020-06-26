@@ -11,3 +11,5 @@ SMWrap/MPlayer.exe
 SMWrap/SMWrap.xml
 <h4>Запуск сервера SMWrap</h4>
 d RUN^%ZMRPMD
+
+<iframe src="html/index.html"></iframe>
